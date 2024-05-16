@@ -22,3 +22,12 @@ INFO 2024-05-12 20:22:32,248 views 4680 3744 About me accessed
 INFO 2024-05-12 20:22:32,248 basehttp 4680 3744 "GET /about/ HTTP/1.1" 200 381
 INFO 2024-05-12 20:22:37,910 views 4680 3744 Main page accessed
 INFO 2024-05-12 20:22:37,910 basehttp 4680 3744 "GET / HTTP/1.1" 200 404
+INFO 2024-05-14 18:39:13,588 autoreload 6692 6676 Watching for file changes with StatReloader
+INFO 2024-05-14 18:39:42,926 views 6692 3912 Main page accessed
+INFO 2024-05-14 18:39:42,928 basehttp 6692 3912 "GET / HTTP/1.1" 200 404
+WARNING 2024-05-14 18:39:43,059 log 6692 3912 Not Found: /favicon.ico
+INFO 2024-05-14 18:39:43,061 basehttp 6692 3912 - Broken pipe from ('127.0.0.1', 53225)
+INFO 2024-05-14 18:39:45,412 views 6692 5628 Main page accessed
+INFO 2024-05-14 18:39:45,413 basehttp 6692 5628 "GET / HTTP/1.1" 200 404
+INFO 2024-05-14 18:39:46,831 views 6692 5756 About me accessed
+INFO 2024-05-14 18:39:46,838 basehttp 6692 5756 "GET /about/ HTTP/1.1" 200 381

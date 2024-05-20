@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from hwapp.models import User
+from hwapp.models import Client
 
 
 class Command(BaseCommand):
@@ -10,7 +10,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         pk = kwargs.get('pk')
-        user = User.objects.filter(pk=pk).first()
-        if user is not None:
-            user.is_deleted = True
-        self.stdout.write(f'{user}')
+        client = Client.objects.filter(pk=pk).first()
+        if client is not None:
+            client.is_deleted = True
+        self.stdout.write(f'{client}')

@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
-from hwapp.models import User
+from hwapp.models import Client
 
 
 class Command(BaseCommand):
     help = "Get all users."
 
     def handle(self, *args, **kwargs):
-        users = User.objects.all()
-        self.stdout.write(f'{users}')
+        clients = Client.objects.all()
+        self.stdout.write(f'{clients}')

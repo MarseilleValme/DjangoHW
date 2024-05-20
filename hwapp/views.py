@@ -1,50 +1,37 @@
 import logging
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.utils import timezone
+from .models import Order
+
+
 
 logger = logging.getLogger(__name__)
-
-main_html = """
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Main Page</title>
-    </head>
-    <body>
-        <h1>Welcome to my first site</h1>
-        <ul>
-            <li><a href="/">Main</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>      
-    </body>
-    </html>
-"""
-
-about_html = """
-<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About me</title>
-    </head>
-    <body>
-        <h1>About me</h1>
-        <ul>
-            <li><a href="/">Main</a></li>
-            <li><a href="/about">About</a></li>
-        </ul>
-    </body>
-    </html>
-"""
 
 
 def index(request):
     logger.info("Main page accessed")
-    return HttpResponse(main_html)
+    return render(request, 'index.html')
 
 
 def about(request):
     logger.info("About me accessed")
-    return HttpResponse(about_html)
+    return render(request, 'about.html')
+
+
+def client_ordered_products(request, client_id, days):
+    end_date = timezone.now()
+    start_date = end_date - timezone.timedelta(days=days)
+    orders = Order.objects.filter(client_id=client_id, date_placing__range=(start_date, end_date))
+
+    ordered_products = []
+    for order in orders:
+        ordered_products.extend(order.products.all())
+
+    uniq_ordered_products = list(set(ordered_products))
+
+    context = {
+        'client_id': client_id,
+        'ordered_products': uniq_ordered_products,
+        'days': days,
+    }
+    return render(request, 'client_ordered_products.html', context)

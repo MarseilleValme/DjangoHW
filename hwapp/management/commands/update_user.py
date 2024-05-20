@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from hwapp.models import User
+from hwapp.models import Client
 
 
 class Command(BaseCommand):
@@ -12,7 +12,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         pk = kwargs.get('pk')
         name = kwargs.get('name')
-        user = User.objects.filter(pk=pk).first()
-        user.name = name
-        user.save()
-        self.stdout.write(f'{user}')
+        client = Client.objects.filter(pk=pk).first()
+        client.name = name
+        client.save()
+        self.stdout.write(f'{client}')

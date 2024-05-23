@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %}Список товаров, заказанных клиентом{% endblock %}
+{% block title %}List of products, ordered by the client{% endblock %}
 
 {% block content %}
-<h1>Список заказанных товаров</h1>
-<p>За последние {{ days }} дней:</p>
+<h1>List of ordered products</h1>
+<p>In the last {{ days }} days:</p>
 <ul>
     {% for product in ordered_products %}
     <li>{{ product.name }} - {{ product.description }} - {{ product.price }} </li>

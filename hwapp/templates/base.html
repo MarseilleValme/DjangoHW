@@ -3,14 +3,17 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}   {% endblock %} </title>
+        <title>{% block title %} Main Page {% endblock %} </title>
     </head>
     <body>
         <ul>
 
             <li><a href="/">Main</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/clients/1/ordered_products/30/">Product list</a></li>
+            <li><a href="/create_client">Create client</a></li>
+            <li><a href="/all_clients">View all clients</a></li>
+            <li><a href="/create_product">Create the product</a></li>
+            <li><a href="/all_products">View all products</a></li>
         </ul>
         {% block content %}
         {% endblock %}

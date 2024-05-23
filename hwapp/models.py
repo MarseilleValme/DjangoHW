@@ -5,12 +5,12 @@ class Client(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.IntegerField()
-    adres = models.CharField(max_length=100)
-    date_reg = models.DateTimeField(auto_now_add=True)
+    address = models.CharField(max_length=100)
+    date_reg = models.DateField(auto_now_add=True)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'Username: {self.name}, email: {self.email}, phone: {self.phone}, adres: {self.adres}, ' \
+        return f'Username: {self.name}, email: {self.email}, phone: {self.phone}, address: {self.address}, ' \
                f'date_reg: {self.date_reg}, deleted: {self.is_deleted}'
 
 
@@ -19,7 +19,8 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     quantity = models.IntegerField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateField(auto_now_add=True)
+    image = models.ImageField(upload_to='images/', null=True, blank=True)
 
     def __str__(self):
         return (
@@ -31,7 +32,7 @@ class Order(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
     total_price = models.DecimalField(max_digits=8, decimal_places=2)
-    date_placing = models.DateTimeField(auto_now_add=True)
+    date_placing = models.DateField(auto_now_add=True)
 
     def __str__(self):
         product_names = ', '.join([product.name for product in self.products.all()])

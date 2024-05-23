@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update the client</h2>
+<form method="post">
+  {% csrf_token %}
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" value="{{ client.name }}"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" value="{{ client.email }}"><br>
+  <label for="phone">Phone number:</label><br>
+  <input type="text" id="phone" name="phone" value="{{ client.phone }}"><br>
+  <label for="address">Post address:</label><br>
+  <textarea id="address" name="address">{{ client.address }}</textarea><br>
+  <button type="submit">Update</button>
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>All clients</h2>
+
+<ul>
+    {% for client in clients %}
+    <li>
+        <div class="client-container">
+            <div class="client-info">
+                <span>{{ client.name }}, </span>
+                <span>{{ client.email }}, </span>
+                <span>{{ client.phone }}, </span>
+                <span>{{ client.address }}</span>
+            </div>
+            <div class="client-buttons">
+                <form id="updateForm{{ client.id }}" action="{% url 'update_client' client.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-update">Change</button>
+                </form>
+                <form id="deleteForm{{ client.id }}" action="{% url 'delete_client' client.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="button" class="btn-delete" onclick="confirmDelete({{ client.id }})">Delete</button>
+                </form>
+            </div>
+        </div>
+        
+        <button type="button" class="btn-view" onclick="window.location.href='{% url 'client_ordered_products' client_id=client.id days=7 %}'">View products ordered in the last week</button>
+        <button type="button" class="btn-view" onclick="window.location.href='{% url 'client_ordered_products' client_id=client.id days=30 %}'">View products ordered in the last month</button>
+        <button type="button" class="btn-view" onclick="window.location.href='{% url 'client_ordered_products' client_id=client.id days=365 %}'">View products ordered in the last year</button>
+
+    </li>
+
+    {% endfor %}
+</ul>
+
+<script>
+    function confirmDelete(clientId) {
+        if (confirm('Are you sure you want to delete this client?')) {
+            document.getElementById('deleteForm' + clientId).submit();
+        }
+    }
+</script>
+
+{% endblock %}

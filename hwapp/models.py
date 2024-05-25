@@ -14,13 +14,21 @@ class Client(models.Model):
                f'date_reg: {self.date_reg}, deleted: {self.is_deleted}'
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    quantity = models.IntegerField()
+    description = models.TextField(default='', blank=True)
+    price = models.DecimalField(default=0.00, max_digits=8, decimal_places=2)
+    quantity = models.PositiveSmallIntegerField(default=0)
     created_at = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to='images/', null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return (

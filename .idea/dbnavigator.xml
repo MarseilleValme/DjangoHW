@@ -40,7 +40,17 @@
         <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="799ed666-64e9-4097-ab45-59df63963b15" dataset="main.hwapp_user" active-filter-id="e2cc25a3-ef89-4303-92df-ec5cfac7e17d">
+    <filter-actions connection-id="799ed666-64e9-4097-ab45-59df63963b15" dataset="main.hwapp_client" active-filter-id="5cad9568-efc8-4281-95d3-978d5ac6133c">
+      <filter id="5cad9568-efc8-4281-95d3-978d5ac6133c" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="799ed666-64e9-4097-ab45-59df63963b15" dataset="main.hwapp_product" active-filter-id="EMPTY_FILTER">
+      <filter id="79331be7-7a93-47c3-ab23-00d3d08f558f" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="799ed666-64e9-4097-ab45-59df63963b15" dataset="main.hwapp_user" active-filter-id="EMPTY_FILTER">
       <filter id="e2cc25a3-ef89-4303-92df-ec5cfac7e17d" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
       </filter>

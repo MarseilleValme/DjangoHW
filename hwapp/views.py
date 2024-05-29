@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Order, Client, Product
 from .forms import ClientForm, ProductForm
+from django.db.models import Sum
 
 
 logger = logging.getLogger(__name__)
@@ -33,7 +34,7 @@ def create_client(request):
 
 
 def all_clients_view(request):
-    clients = Client.objects.all()
+    clients = Client.objects.filter(is_deleted=False)
     return render(request, 'all_clients.html', {'clients': clients})
 
 
@@ -88,7 +89,8 @@ def update_client(request, client_id):
 def delete_client(request, client_id):
     client = Client.objects.get(id=client_id)
     if request.method == 'POST':
-        client.delete()
+        client.is_deleted = True
+        client.save()
         return redirect('all_clients')
     return render(request, 'delete_client.html', {'client': client})
 
@@ -112,3 +114,30 @@ def client_ordered_products(request, client_id, days):
         'days': days,
     }
     return render(request, 'client_ordered_products.html', context)
+
+
+def total_in_db(request):
+    total = Product.objects.aggregate(Sum('quantity'))
+    context = {
+        'title': 'Общее количество посчитано в базе данных',
+        'total': total,
+        }
+    return render(request, 'total_count.html', context)
+
+
+def total_in_view(request):
+    products = Product.objects.all()
+    total = sum(product.quantity for product in products)
+    context = {
+        'title': 'Общее количество посчитано в представлении',
+        'total': total,
+        }
+    return render(request, 'total_count.html', context)
+
+
+def total_in_template(request):
+    context = {
+        'title': 'Общее количество посчитано в шаблоне',
+        'products': Product,
+        }
+    return render(request, 'total_count.html', context)

@@ -13,4 +13,5 @@ class Command(BaseCommand):
         client = Client.objects.filter(pk=pk).first()
         if client is not None:
             client.is_deleted = True
+            client.save()
         self.stdout.write(f'{client}')

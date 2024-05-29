@@ -8,9 +8,9 @@
     <li>
         <div class="client-container">
             <div class="client-info">
-                <span>{{ client.name }}, </span>
-                <span>{{ client.email }}, </span>
-                <span>{{ client.phone }}, </span>
+                <span>{{ client.name }} — </span>
+                <span>{{ client.email }} — </span>
+                <span>{{ client.phone }} — </span>
                 <span>{{ client.address }}</span>
             </div>
             <div class="client-buttons">
@@ -20,7 +20,7 @@
                 </form>
                 <form id="deleteForm{{ client.id }}" action="{% url 'delete_client' client.id %}" method="post" style="display: inline;">
                     {% csrf_token %}
-                    <button type="button" class="btn-delete" onclick="confirmDelete({{ client.id }})">Delete</button>
+                    <button type="submit" class="btn-delete" onclick="confirmDelete({{ client.id }})">Delete</button>
                 </form>
             </div>
         </div>

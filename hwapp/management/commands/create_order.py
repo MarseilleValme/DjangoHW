@@ -6,9 +6,12 @@ class Command(BaseCommand):
     help = "Create order."
 
     def handle(self, *args, **kwargs):
-        client = Client.objects.filter(pk=3).first()
-        product1 = Product.objects.filter(pk=2).first()
-        product2 = Product.objects.filter(pk=4).first()
+        client = Client.objects.filter(pk=2).first()
+        print(client)
+        product1 = Product.objects.filter(pk=4).first()
+        print(product1)
+        product2 = Product.objects.filter(pk=7).first()
+        print(product2)
         total_price = product1.price + product2.price
         order = Order.objects.create(client=client, total_price=total_price)
         order.products.add(product1, product2)

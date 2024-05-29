@@ -14,4 +14,7 @@ urlpatterns = [
     path('clients/<int:client_id>/delete/', views.delete_client, name='delete_client'),
     path('clients/<int:client_id>/ordered_products/<int:days>/', views.client_ordered_products,
          name='client_ordered_products'),
+    path('db/', views.total_in_db, name='db'),
+    path('view/', views.total_in_view, name='view'),
+    path('template/', views.total_in_template, name='template'),
 ]

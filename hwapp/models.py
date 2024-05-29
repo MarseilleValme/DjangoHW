@@ -30,6 +30,10 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images/', null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
 
+    @property
+    def total_quantity(self):
+        return sum(product.quantity for product in Product.objects.all())
+
     def __str__(self):
         return (
             f'Product: {self.name}, description: {self.description}, price:{self.price}, rest_quantity:{self.quantity}, '
